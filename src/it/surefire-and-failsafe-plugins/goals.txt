@@ -1,0 +1,1 @@
+clean clover:setup verify clover:aggregate clover:clover

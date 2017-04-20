@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<verifications>
+    <files>
+        <!-- check that we have reports for the groovy and java classes -->
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/Example.html</location>
+            <contains>File Example.groovy</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/ExampleTest.html</location>
+            <contains>File ExampleTest.groovy</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/HelperTest.html</location>
+            <contains>File HelperTest.java</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/Helper.html</location>
+            <contains>File Helper.java</contains>
+        </file>
+        <!-- Check that we have code coverage -->
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="2".*|signature="show\(\) : def".*){2}/>]]></contains> <!-- Example.groovy -->
+        </file>
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="1".*|signature="help\(Example\) : void".*){2}/>]]></contains> <!-- Helper.java -->
+        </file>
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="1".*|signature="testHelp\(\) : void".*){2}/>]]></contains> <!-- HelperTest.groovy -->
+        </file>
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="1".*|signature="testShow\(\) : void".*){2}/>]]></contains> <!-- ExampleTest.groovy -->
+        </file>
+        <!-- Check that we have instrumented java sources -->
+        <file>
+            <location>target/clover/src/com/atlassian/maven/plugins/Helper.java</location>
+            <contains>This file has been instrumented by Clover</contains>
+        </file>
+        <file>
+            <location>target/clover/src-test/com/atlassian/maven/plugins/HelperTest.java</location>
+            <contains>This file has been instrumented by Clover</contains>
+        </file>
+    </files>
+</verifications>

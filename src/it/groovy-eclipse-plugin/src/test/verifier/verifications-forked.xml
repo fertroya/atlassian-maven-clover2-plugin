@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<verifications>
+    <files>
+        <!-- check that we have reports for the groovy classes -->
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/ExampleTest.html</location>
+            <contains>File ExampleTest.groovy</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/GroovyExample.html</location>
+            <contains>File GroovyExample.groovy</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/GroovyHelper.html</location>
+            <contains>File GroovyHelper.groovy</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/GroovyHelperTest.html</location>
+            <contains>File GroovyHelperTest.groovy</contains>
+        </file>
+        <!-- check that we have reports for the java classes -->
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/JavaExample.html</location>
+            <contains>File JavaExample.java</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/JavaHelper.html</location>
+            <contains>File JavaHelper.java</contains>
+        </file>
+        <file>
+            <location>target/site/clover/com/atlassian/maven/plugins/JavaHelperTest.html</location>
+            <contains>File JavaHelperTest.java</contains>
+        </file>
+        <!-- Check that we have code coverage -->
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="3".*|signature="show\(\) : def".*){2}/>]]></contains> <!-- GroovyExample.groovy -->
+        </file>
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="1".*|signature="help\(GroovyExample\) : void".*){2}/>]]></contains> <!-- JavaHelper.java -->
+        </file>
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="1".*|signature="testGroovyExampleHelp\(\) : void".*){2}/>]]></contains> <!-- GroovyHelperTest.groovy -->
+        </file>
+        <file>
+            <location>target/site/clover/clover.xml</location>
+            <contains><![CDATA[<line .*(count="1".*|signature="testShow\(\) : void".*){2}/>]]></contains> <!-- ExampleTest.groovy -->
+        </file>
+        <!-- Check that we have compiled some classes, which were out of scope of instrumentation -->
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/GroovyExcludedFile.class</location>
+        </file>
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/JavaExcludedFile.class</location>
+        </file>
+        <!-- Check that out of scope instrumentation classes were executed -->
+        <file>
+            <location>target/surefire-reports/com.atlassian.maven.plugins.JavaExcludedFileTest-output.txt</location>
+            <contains>Executing JavaExcludedFileTest.testExcluded</contains>
+        </file>
+        <file>
+            <location>target/surefire-reports/com.atlassian.maven.plugins.JavaExcludedFileTest-output.txt</location>
+            <contains>JavaExcludedFile.excluded: this shall not be in the report</contains>
+        </file>
+        <file>
+            <location>target/surefire-reports/com.atlassian.maven.plugins.GroovyExcludedFileTest-output.txt</location>
+            <contains>Executing GroovyExcludedFileTest.testExcluded</contains>
+        </file>
+        <file>
+            <location>target/surefire-reports/com.atlassian.maven.plugins.GroovyExcludedFileTest-output.txt</location>
+            <contains>GroovyExcludedFile.excluded: this shall not be in the report</contains>
+        </file>
+        <!-- Check that we have instrumented java sources -->
+        <file>
+            <location>target/clover/src/com/atlassian/maven/plugins/JavaExample.java</location>
+            <contains>This file has been instrumented by Clover</contains>
+        </file>
+        <file>
+            <location>target/clover/src/com/atlassian/maven/plugins/JavaHelper.java</location>
+            <contains>This file has been instrumented by Clover</contains>
+        </file>
+        <file>
+            <location>target/clover/src-test/com/atlassian/maven/plugins/JavaHelperTest.java</location>
+            <contains>This file has been instrumented by Clover</contains>
+        </file>
+        <!-- Check that we have compiled classes in 'default' life cycle -->
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/JavaExample.class</location>
+        </file>
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/JavaExcludedFile.class</location>
+        </file>
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/JavaHelper.class</location>
+        </file>
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/GroovyExample.class</location>
+        </file>
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/GroovyExcludedFile.class</location>
+        </file>
+        <file>
+            <location>target/classes/com/atlassian/maven/plugins/GroovyHelper.class</location>
+        </file>
+        <file>
+            <location>target/test-classes/com/atlassian/maven/plugins/ExampleTest.class</location>
+        </file>
+        <file>
+            <location>target/test-classes/com/atlassian/maven/plugins/JavaExcludedFileTest.class</location>
+        </file>
+        <file>
+            <location>target/test-classes/com/atlassian/maven/plugins/JavaHelperTest.class</location>
+        </file>
+        <file>
+            <location>target/test-classes/com/atlassian/maven/plugins/GroovyExcludedFileTest.class</location>
+        </file>
+        <file>
+            <location>target/test-classes/com/atlassian/maven/plugins/GroovyHelperTest.class</location>
+        </file>
+        <!-- Check that we have compiled classes in 'clover' life cycle -->
+        <file>
+            <location>target/clover/classes/com/atlassian/maven/plugins/JavaExample.class</location>
+        </file>
+        <file>
+            <location>target/clover/classes/com/atlassian/maven/plugins/JavaExcludedFile.class</location>
+        </file>
+        <file>
+            <location>target/clover/classes/com/atlassian/maven/plugins/JavaHelper.class</location>
+        </file>
+        <file>
+            <location>target/clover/classes/com/atlassian/maven/plugins/GroovyExample.class</location>
+        </file>
+        <file>
+            <location>target/clover/classes/com/atlassian/maven/plugins/GroovyExcludedFile.class</location>
+        </file>
+        <file>
+            <location>target/clover/classes/com/atlassian/maven/plugins/GroovyHelper.class</location>
+        </file>
+        <file>
+            <location>target/clover/test-classes/com/atlassian/maven/plugins/ExampleTest.class</location>
+        </file>
+        <file>
+            <location>target/clover/test-classes/com/atlassian/maven/plugins/JavaExcludedFileTest.class</location>
+        </file>
+        <file>
+            <location>target/clover/test-classes/com/atlassian/maven/plugins/JavaHelperTest.class</location>
+        </file>
+        <file>
+            <location>target/clover/test-classes/com/atlassian/maven/plugins/GroovyExcludedFileTest.class</location>
+        </file>
+        <file>
+            <location>target/clover/test-classes/com/atlassian/maven/plugins/GroovyHelperTest.class</location>
+        </file>
+    </files>
+</verifications>

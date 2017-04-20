@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.atlassian.maven.plugins.sample</groupId>
+    <artifactId>clover-sample-optimized</artifactId>
+    <packaging>pom</packaging>
+    <name>Clover Maven Plugin optimized Sample</name>
+    <description>Clover Maven Plugin optimized Sample</description>
+    <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/NeverRunTest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <version>4.2.0-SNAPSHOT</version>
+                <configuration>
+                    <singleCloverDatabase>true</singleCloverDatabase>
+                    <alwaysRunTests>
+                        <alwaysRunTest>**/AlwaysRunTest.java</alwaysRunTest>
+                    </alwaysRunTests>
+                    <snapshot>${project.build.directory}/clover.snapshot</snapshot>
+                    <jdk>1.6</jdk>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                            <goal>setup</goal>
+                            <goal>optimize</goal>
+                            <goal>snapshot</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>module-a</module>
+        <module>module-b</module>
+        <module>module-c</module>
+        <module>snapshot-hacking</module>
+  </modules>
+</project>
